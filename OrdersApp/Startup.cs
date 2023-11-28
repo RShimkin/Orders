@@ -16,16 +16,13 @@ namespace OrdersApp
         {
             string constr = Configuration.GetConnectionString("DefaultConnection") ?? "";
 
-
             services.AddTransient<IRepository<Provider>, ProvidersRepository>();
             services.AddTransient<IRepository<Order>, OrdersRepository>();
 			services.AddTransient<IRepository<OrderItem>, OrderItemsRepository>();
-
-			services.AddControllersWithViews();
-
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(constr));
 
-            services.AddDistributedMemoryCache();
+            services.AddControllersWithViews();
+            //services.AddDistributedMemoryCache();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,8 +40,6 @@ namespace OrdersApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
-            app.UseSession();
 
             app.UseAuthentication();
             app.UseAuthorization();

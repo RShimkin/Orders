@@ -5,6 +5,6 @@ namespace OrdersApp.Models.Repositories
 {
 	public class OrdersRepository : AbstractRepository<Order>
 	{
-		public OrdersRepository(AppDbContext context) : base(context) => Table = context.Orders;
+		public OrdersRepository(AppDbContext context) : base(context) => Table = context.Orders; 
 	}
 }

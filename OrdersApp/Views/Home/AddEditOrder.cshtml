@@ -1,0 +1,23 @@
+﻿@model OrderVM
+@{
+	ViewData["Title"] = "Edit Order";
+}
+<div class="text-center">
+    <form asp-controller="Home" asp-action="@Model.ActionName" method="post">
+		<p>
+			@Html.LabelFor(m => m.Number, "Order Number")
+			@Html.TextBoxFor(m => m.Number)
+		</p>
+		<p>
+			@Html.LabelFor(m => m.Date, "Order Date")
+			@Html.TextBoxFor(m => m.Date, new { type = "date"})
+		</p>
+		<p>
+			@Html.LabelFor(m => m.ProviderId, "Order Provider")
+			@Html.DropDownListFor(m => m.ProviderId, Model.Providers)
+		</p>
+		<p>
+			<input type="submit" value="Send" />
+		</p>
+	</form>
+</div>

@@ -1,8 +1,27 @@
-﻿@{
+﻿@model OrdersVM
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <form method="get">
+      @Html.LabelFor(m => m.Criteria.ProviderId)
+      @Html.DropDownListFor(m => m.Criteria.ProviderId, Model.ProvidersList)
+      @Html.LabelFor(m => m.Criteria.DateFrom)
+      @Html.TextBoxFor(m => m.Criteria.DateFrom, new { type = "date" })
+      @Html.LabelFor(m => m.Criteria.DateTo)
+      @Html.TextBoxFor(m => m.Criteria.DateTo, new { type = "date" })
+      <input type="submit" value="Filter"/>
+    </form>
+    <p><a asp-controller="Home" asp-action="AddOrder">Create Order</a></p>
+    <h3 class="display-4">Orders:</h3>
+    @if (Model.Orders.Count() == 0)
+    {
+        <p>Currently no orders...</p>
+    }
+    @foreach (Order order in Model.Orders)
+    {
+        <P><h5>Order <b><a asp-controller="Home" asp-action="EditOrder" asp-route-id="@order.Id">#@order.Number</a></b> 
+          at <i>@order.Date.Date</i> by @order.Provider?.Name</h5></P>
+    }
 </div>

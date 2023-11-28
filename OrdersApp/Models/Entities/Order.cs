@@ -19,5 +19,7 @@ namespace OrdersApp.Models.Entities
 
         [ForeignKey("ProviderId")]
         public Provider? Provider { get; set; }
+
+        public List<OrderItem>? OrderItems { get; set; }
     }
 }
