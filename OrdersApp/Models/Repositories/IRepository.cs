@@ -6,7 +6,7 @@
 
         Task<IEnumerable<int>> AddRangeAsync(IEnumerable<T> entities);
 
-        Task<T> GetAsync(int id);
+        Task<T?> GetAsync(int id);
 
         Task<IEnumerable<T>> GetAllAsync();
 

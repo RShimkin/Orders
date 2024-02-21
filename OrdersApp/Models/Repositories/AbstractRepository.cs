@@ -16,7 +16,7 @@ namespace OrdersApp.Models.Repositories
 
         protected DbSet<T> Table = null!;
 
-        public virtual async Task<T> GetAsync(int id) => await Table.FirstOrDefaultAsync(e => e.Id == id);
+        public virtual async Task<T?> GetAsync(int id) => await Table.FirstOrDefaultAsync(e => e.Id == id);
             //await Task.Run(() => Table.FirstOrDefault(entity => entity.Id == id));
 
         public async Task<int> AddAsync(T entity)

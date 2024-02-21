@@ -1,0 +1,26 @@
+﻿@model ViewOrderVM
+@{
+	ViewData["Title"] = $"View Order";
+}
+<div class="text-center">
+	<a asp-controller="Home" asp-action="EditOrder" asp-route-id="@Model.Order.Id">Edit</a>
+	<a asp-controller="Home" asp-action="DeleteOrder" asp-route-id="@Model.Order.Id">Delete</a>
+	<p>
+		Order #: @Model.Order.Number
+	</p>
+	<p>
+		Date: @Model.Order.Date.Date
+	</p>
+	<p>
+		Provider: @Model.Order.Provider?.Name
+	</p>
+	<p>Items:</p>
+	@if (Model.Order.OrderItems != null)
+	{
+		@foreach (OrderItem item in Model.Order.OrderItems)
+		{
+			<p>item.Id</p>
+		}
+
+	}
+</div>

@@ -12,13 +12,13 @@ namespace OrdersApp.Models.Entities
         public int Id { get; set; }
 
         [Column(TypeName = "nvarchar(max)"), Required]
-        public string? Number { get; set; }
+        public string Number { get; set; } = string.Empty;
 
 		[Column(TypeName = "datetime2(7)"), Required]
 		public DateTime Date { get; set; }
 
         [ForeignKey("ProviderId")]
-        public Provider? Provider { get; set; }
+        public Provider Provider { get; set; } = null!;
 
         public List<OrderItem>? OrderItems { get; set; }
     }

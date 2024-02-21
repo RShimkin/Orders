@@ -1,23 +1,31 @@
-﻿@model OrderVM
+﻿@model AddEditOrderVM
 @{
-	ViewData["Title"] = "Edit Order";
+	ViewData["Title"] = $"{Model.Action} Order";
 }
 <div class="text-center">
     <form asp-controller="Home" asp-action="@Model.ActionName" method="post">
-		<p>
+		<div class="validation" asp-validation-summary="ModelOnly"></div>
+		<div class="form-group">
 			@Html.LabelFor(m => m.Number, "Order Number")
 			@Html.TextBoxFor(m => m.Number)
-		</p>
-		<p>
+		</div>
+		@Html.ValidationMessageFor(m => m.Number)
+		<div class="form-group">
 			@Html.LabelFor(m => m.Date, "Order Date")
 			@Html.TextBoxFor(m => m.Date, new { type = "date"})
-		</p>
-		<p>
+			<span asp-validation-for="Date" />
+		</div>
+		<div class="form-group">
 			@Html.LabelFor(m => m.ProviderId, "Order Provider")
 			@Html.DropDownListFor(m => m.ProviderId, Model.Providers)
-		</p>
+		</div>
 		<p>
-			<input type="submit" value="Send" />
+			<input class="btn btn-primary" type="submit" value="Send" />
 		</p>
 	</form>
+	@Html.HiddenFor(m => m.Id)
+	@if (Model.Action != "Add")
+	{
+		
+	}
 </div>

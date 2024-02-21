@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OrdersApp.Models.Contexts;
 using OrdersApp.Models.Entities;
 using OrdersApp.Models.Repositories;
+using OrdersApp.Services;
 
 namespace OrdersApp
 {
@@ -19,6 +20,7 @@ namespace OrdersApp
             services.AddTransient<IRepository<Provider>, ProvidersRepository>();
             services.AddTransient<IRepository<Order>, OrdersRepository>();
 			services.AddTransient<IRepository<OrderItem>, OrderItemsRepository>();
+            services.AddTransient<IService, BusinessService>();
             services.AddDbContext<AppDbContext>(options => options.UseSqlServer(constr));
 
             services.AddControllersWithViews();
